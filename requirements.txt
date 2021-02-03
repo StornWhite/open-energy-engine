@@ -1,0 +1,2 @@
+# pandjas:
+git+git://github.com/StornWhite/pandjas.git
