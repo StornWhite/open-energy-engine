@@ -132,7 +132,26 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# AWS Credentials
 
-STATIC_URL = '/static/'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+STATIC_ROOT = STATIC_URL = os.environ.get("STATIC_ROOT", default="/static/")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STATIC_BUCKET_NAME")
+if AWS_STORAGE_BUCKET_NAME:
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# Media files (Uploads)
+TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
+MEDIA_ROOT_DIR = "media_root_test/" if TESTING else "media_root/"
+MEDIA_ROOT = MEDIA_URL = os.path.join(
+    os.environ.get("MEDIA_ROOT", BASE_DIR), MEDIA_ROOT_DIR
+)
+AWS_MEDIA_BUCKET_NAME = os.environ.get("AWS_MEDIA_BUCKET_NAME", "")
+if AWS_MEDIA_BUCKET_NAME:
+    DEFAULT_FILE_STORAGE = "oee.libs.storages.MediaStorage"
