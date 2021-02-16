@@ -40,12 +40,22 @@ except AttributeError:
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+
+    # 3rd party apps
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     # Project apps
     'oee.apps.OeeConfig',
@@ -131,6 +141,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# For django sites framework, required by rest-auth registration
+SITE_ID = 1
 
 # AWS Credentials
 
