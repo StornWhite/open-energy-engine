@@ -1,0 +1,38 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$Q6l90Wy7emA2$+L1beLCg74ULcgsYFiqI2OMTHrWEbhbqoSvyWw2A3VE=",
+    "last_login": "2021-02-19T12:43:41Z",
+    "is_superuser": false,
+    "username": "johnsnow",
+    "first_name": "John",
+    "last_name": "Snow",
+    "email": "storn+johnsnow@open-energy-engine.org",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-17T22:02:17Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$F7QD3SuJQBfk$W9ZI42gjAPQSSWisIgY87IlCk/FQm7h1Ch9KoohbfO8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "robbstark",
+    "first_name": "Robb",
+    "last_name": "Stark",
+    "email": "storn+robbstark@open-energy-engine.org",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2021-02-19T12:56:30Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

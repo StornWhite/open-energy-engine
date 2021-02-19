@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 
     # Project apps
     'oee.apps.OeeConfig',
+    'authorize.apps.AuthorizeConfig',
 ]
 
 MIDDLEWARE = [
@@ -167,17 +168,21 @@ MEDIA_ROOT = MEDIA_URL = os.path.join(
 )
 AWS_MEDIA_BUCKET_NAME = os.environ.get("AWS_MEDIA_BUCKET_NAME", "")
 if AWS_MEDIA_BUCKET_NAME:
-    DEFAULT_FILE_STORAGE = "oee.libs.storages.MediaStorage"
+    DEFAULT_FILE_STORAGE = "libs.storages.MediaStorage"
 
 # DRF Settings
 # todo: Add filter backend
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
     ),
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"
+}
+
+# Django-Rest-Auth Settings:
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'authorize.serializers.OEELoginSerializer',
 }
