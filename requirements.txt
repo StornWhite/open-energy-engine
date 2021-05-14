@@ -1,6 +1,7 @@
 boto3==1.16.52
 botocore==1.19.52
 django-allauth==0.44.0
+django-cors-headers==3.7.0
 django-rest-auth==0.9.5
 django-storages==1.11.1
 djangorestframework==3.12.2

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     'allauth',
     'allauth.account',
+    'corsheaders',
     'drf_yasg',
     'rest_auth',
     'rest_auth.registration',
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,6 +74,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_EXPOSE_HEADERS = ["Content-Disposition", "Content-Length"]
+
+try:
+    CORS_ORIGIN_WHITELIST = os.environ.get("CORS_ORIGIN_WHITELIST").split(" ")
+except AttributeError:
+    CORS_ORIGIN_WHITELIST = []
 
 ROOT_URLCONF = 'oee.urls'
 
