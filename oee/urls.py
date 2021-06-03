@@ -4,7 +4,6 @@ from django.contrib import admin
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from rest_auth import urls as rest_auth_urls
 
 from oee.views import hello_world
 
@@ -23,7 +22,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     re_path(r"^admin/?", admin.site.urls),
-    re_path(r"^auth/?", include(rest_auth_urls)),
+    re_path(r"^auth/?", include('rest_auth.urls')),
+    re_path(r'^auth/registration/', include('rest_auth.registration.urls')),
     re_path(r"^hello/?", hello_world, name="Hello World"),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

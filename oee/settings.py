@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     # 3rd party apps
     'allauth',
     'allauth.account',
+    # Required by allauth, even without social login:
+    'allauth.socialaccount',
     'corsheaders',
     'drf_yasg',
     'rest_auth',
@@ -180,6 +182,14 @@ AWS_MEDIA_BUCKET_NAME = os.environ.get("AWS_MEDIA_BUCKET_NAME", "")
 if AWS_MEDIA_BUCKET_NAME:
     DEFAULT_FILE_STORAGE = "libs.storages.MediaStorage"
 
+# SMTP settings
+EMAIL_HOST = "email-smtp.us-west-2.amazonaws.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("SMTP_USER", None)
+EMAIL_HOST_PASSWORD = os.environ.get("SMTP_PASSWORD", None)
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "support@open-energy-engine.org"
+
 # DRF Settings
 # todo: Add filter backend
 REST_FRAMEWORK = {
@@ -196,3 +206,6 @@ REST_FRAMEWORK = {
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'authorize.serializers.OEELoginSerializer',
 }
+
+# Django-AllAuth Settings:
+ACCOUNT_EMAIL_REQUIRED = True
